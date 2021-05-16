@@ -6,11 +6,11 @@ RUN apk update \
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+COPY backend/go.mod backend/go.sum ./
 
 RUN go mod download
 
-COPY . .
+COPY ./backend .
 
 RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-w -s" -o /main ./cmd
 
