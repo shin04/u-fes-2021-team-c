@@ -9,7 +9,12 @@ type UserUsecase struct {
 	UserRepo database.UserRepository
 }
 
-func (uc *UserUsecase) RegisterNewUser(user *model.User) (int, error) {
+func (uc *UserUsecase) RegisterNewUser(userName string, password string) (int, error) {
+	user := &model.User{
+		Name:     userName,
+		Password: password,
+	}
+
 	userId, err := uc.UserRepo.CreateUser(user)
 	if err != nil {
 		return -1, err
