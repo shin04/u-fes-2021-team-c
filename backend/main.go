@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"u-fes-2021-team-c/config"
 	"u-fes-2021-team-c/database"
 	"u-fes-2021-team-c/handler"
@@ -34,5 +35,10 @@ func main() {
 	r.GET("/users", func(c *gin.Context) { userHandler.GetAllUsers(c) })
 	r.GET("/user/:id", func(c *gin.Context) { userHandler.GetUser(c) })
 
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	r.Run(":" + port)
 }
