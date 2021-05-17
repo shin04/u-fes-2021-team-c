@@ -20,12 +20,8 @@ type RegisteruserReq struct {
 	Password string
 }
 
-func NewUserHandler(sqlHandler database.SqlHandler) *UserHandler {
-	uc := usecase.UserUsecase{
-		UserRepo: database.UserRepository{
-			SqlHandler: sqlHandler,
-		},
-	}
+func NewUserHandler(userRepo database.UserRepository) *UserHandler {
+	uc := usecase.UserUsecase{UserRepo: userRepo}
 
 	return &UserHandler{uc: uc}
 }
@@ -80,7 +76,7 @@ func (handler *UserHandler) GetAllUsers(c *gin.Context) {
 }
 
 func (handler *UserHandler) GetUser(c *gin.Context) {
-	idStr := c.Param("id")
+	idStr := c.Query("id")
 	userId, err := strconv.Atoi(idStr)
 	if err != nil {
 		log.Fatal(err)
