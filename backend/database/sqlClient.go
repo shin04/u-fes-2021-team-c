@@ -1,6 +1,7 @@
 package database
 
 import (
+	"os"
 	"u-fes-2021-team-c/config"
 
 	"gorm.io/driver/mysql"
@@ -13,6 +14,10 @@ type SqlHandler struct {
 
 // NewSqlClient initialize a new sql client.
 func NewSqlClient(config *config.Config) (*SqlHandler, error) {
+	if os.Getenv("MODE") == "test" {
+		return &SqlHandler{nil}, nil
+	}
+
 	USER := config.DB_USER
 	PASS := config.DB_PASS
 	HOST := config.DB_HOST

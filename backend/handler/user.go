@@ -1,10 +1,11 @@
 package handler
 
 import (
+	"errors"
+	"log"
 	"net/http"
 	"strconv"
 	"u-fes-2021-team-c/database"
-	"u-fes-2021-team-c/model"
 	"u-fes-2021-team-c/usecase"
 
 	"github.com/gin-gonic/gin"
@@ -14,34 +15,44 @@ type UserHandler struct {
 	uc usecase.UserUsecase
 }
 
-type getUsesrReq struct {
-	userId int `json:"userId"`
+type RegisteruserReq struct {
+	Name     string
+	Password string
 }
 
-func NewUserHandler(sqlHandler database.SqlHandler) *UserHandler {
-	uc := usecase.UserUsecase{
-		UserRepo: database.UserRepository{
-			SqlHandler: sqlHandler,
-		},
-	}
+func NewUserHandler(userRepo database.UserRepository) *UserHandler {
+	uc := usecase.UserUsecase{UserRepo: userRepo}
 
 	return &UserHandler{uc: uc}
 }
 
 func (handler *UserHandler) RegisterUser(c *gin.Context) {
-	user := model.User{}
-	err := c.Bind(&user)
+	userReq := RegisteruserReq{}
+	err := c.ShouldBindJSON(&userReq)
 	if err != nil {
-		c.JSON(500, err)
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 
-	userId, err := handler.uc.RegisterNewUser(&user)
+	if userReq.Name == "" || userReq.Password == "" {
+		err = errors.New("username or password field not null")
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+
+	userId, err := handler.uc.RegisterNewUser(userReq.Name, userReq.Password)
 	if err != nil {
-		c.JSON(500, err)
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
 		return
 	}
 	if userId == -1 {
-		c.JSON(500, "regisster usesr failed")
+		err = errors.New("regisster usesr failed")
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"userId": userId})
@@ -50,24 +61,33 @@ func (handler *UserHandler) RegisterUser(c *gin.Context) {
 func (handler *UserHandler) GetAllUsers(c *gin.Context) {
 	users, err := handler.uc.GetAllUsers()
 	if err != nil {
-		c.JSON(500, err)
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 	if len(users) < 1 {
-		c.JSON(500, "users not found")
+		err = errors.New("users not found")
+		log.Fatal(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusOK, users)
 }
 
 func (handler *UserHandler) GetUser(c *gin.Context) {
-	idStr := c.Param("id")
+	idStr := c.Query("id")
 	userId, err := strconv.Atoi(idStr)
 	if err != nil {
-		c.JSON(500, "invalid param")
+		log.Fatal(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 	user, err := handler.uc.GetUserById(userId)
 	if err != nil {
-		c.JSON(500, err)
+		log.Fatal(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusOK, user)
