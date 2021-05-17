@@ -1,0 +1,33 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - backend/**
+  pull_request:
+    branches: [ main ]
+    paths:
+      - backend/**
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+
+    - name: Build
+      run: go build -v ./...
+      working-directory: backend/
+
+    - name: Test
+      env:
+        MODE: test
+      run: go test -v ./...
+      working-directory: backend/
