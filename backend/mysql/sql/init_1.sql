@@ -7,6 +7,6 @@ CREATE TABLE users
     password VARCHAR(128)
 );
 
-INSERT INTO user (name, password) VALUES ('Bob', 'pass');
-INSERT INTO user (name, password) VALUES ('Tom', 'pass');
-INSERT INTO user (name, password) VALUES ('Nancy', 'pass');
+INSERT INTO users (name, password) VALUES ('Bob', 'pass');
+INSERT INTO users (name, password) VALUES ('Tom', 'pass');
+INSERT INTO users (name, password) VALUES ('Nancy', 'pass');
