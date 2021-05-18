@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"u-fes-2021-team-c/database"
+	"u-fes-2021-team-c/repository"
 	"u-fes-2021-team-c/usecase"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +20,7 @@ type RegisteruserReq struct {
 	Password string
 }
 
-func NewUserHandler(userRepo database.UserRepository) *UserHandler {
+func NewUserHandler(userRepo repository.UserRepository) *UserHandler {
 	uc := usecase.UserUsecase{UserRepo: userRepo}
 
 	return &UserHandler{uc: uc}
@@ -67,7 +67,7 @@ func (handler *UserHandler) GetAllUsers(c *gin.Context) {
 	}
 	if len(users) < 1 {
 		err = errors.New("users not found")
-		log.Fatal(err)
+		log.Print(err)
 		c.JSON(500, gin.H{"err": err.Error()})
 		return
 	}
@@ -79,13 +79,13 @@ func (handler *UserHandler) GetUser(c *gin.Context) {
 	idStr := c.Query("id")
 	userId, err := strconv.Atoi(idStr)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 		c.JSON(500, gin.H{"err": err.Error()})
 		return
 	}
 	user, err := handler.uc.GetUserById(userId)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 		c.JSON(500, gin.H{"err": err.Error()})
 		return
 	}
