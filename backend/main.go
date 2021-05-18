@@ -25,9 +25,7 @@ func main() {
 	// sqlHandler.Conn.LogMode(true)
 	// defer sqlHandler.Conn.Close()
 
-	userRepo := database.UserRepository{
-		SqlHandler: *sqlHandler,
-	}
+	userRepo := database.NewUserRepository(*sqlHandler)
 
 	r := gin.Default()
 	r.GET("/health", func(c *gin.Context) {

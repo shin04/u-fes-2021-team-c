@@ -1,12 +1,12 @@
 package usecase
 
 import (
-	"u-fes-2021-team-c/database"
 	"u-fes-2021-team-c/model"
+	"u-fes-2021-team-c/repository"
 )
 
 type UserUsecase struct {
-	UserRepo database.UserRepository
+	UserRepo repository.UserRepository
 }
 
 func (uc *UserUsecase) RegisterNewUser(userName string, password string) (int, error) {
