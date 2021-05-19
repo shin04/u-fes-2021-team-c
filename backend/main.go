@@ -25,6 +25,7 @@ func main() {
 	// defer sqlHandler.Conn.Close()
 
 	userRepo := database.NewUserRepository(*sqlHandler)
+	studentinfoRepo := database.NewStudentRepository(*sqlHandler)
 
 	r := gin.Default()
 	r.GET("/health", func(c *gin.Context) {
@@ -35,6 +36,9 @@ func main() {
 	r.POST("/user", func(c *gin.Context) { userHandler.RegisterUser(c) })
 	r.GET("/users", func(c *gin.Context) { userHandler.GetAllUsers(c) })
 	r.GET("/user", func(c *gin.Context) { userHandler.GetUser(c) })
+
+	studentinfoHandler := handler.NewStudentinfoHandler(studentinfoRepo)
+	r.GET("/student_infos", func(c *gin.Context) { studentinfoHandler.GetAllStudentInfo(c) })
 
 	port := os.Getenv("PORT")
 	if port == "" {
