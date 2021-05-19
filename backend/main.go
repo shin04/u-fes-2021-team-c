@@ -9,7 +9,6 @@ import (
 	"u-fes-2021-team-c/handler"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
