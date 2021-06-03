@@ -1,0 +1,48 @@
+.title {
+  font-size: 80px;
+}
+
+.save {
+  font-size: 50px;
+}
+
+.option select {
+  width: 200px;
+  font-size: 50px;
+  
+}
+
+.box1 {
+  padding-left: 15%;
+}
+
+.filechange {
+  font-size: 50px;
+}
+
+.button1 {
+  font-size: 20px;
+  
+}
+
+.button2 {
+  font-size: 20px;
+  
+}
+
+.box2 {
+  padding-top: 50px;
+  padding-left: 15%;
+}
+
+.writingform {
+  padding-left: 50%;
+  padding-top: -50%;
+}
+
+textarea {
+  resize: none;
+  width: 300px;
+  height: 80px;
+}
+
