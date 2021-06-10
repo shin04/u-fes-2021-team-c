@@ -6,42 +6,44 @@
   <meta name="team-c" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>自動学籍番号付け機</title>
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    (() => {
-      ReactDOM.render(
-        <p></p>
-        document.getElementById("root")
-      );
-    })();
-  </script>
-  <div class="title">ビックカメラ</div>
-  <div class="box1">
-    <lavel for="save format"><div class="save">保存形式</div></lavel>
-    <div class="option">
-      <select id="save format">
-        <option>PDF</option>
-        <option>JPG</option>
-        <option>PNG</option>
-        <option>word</option>
-      </select>
-    </div>
-  </div>
-  <div class="box2">
-    <div class="filechange">複数→単一</div>
-    <button><div class="button1">ファイル選択</div></button>
-    <button><div class="button2">実行</div></button>
-  </div>
-  <form method="POST">
-    <div class="writingform">
-      <label for="name">記入欄</label>
-        <textarea type="text" id="name"></textarea>
-    </div>
-  </form>
+<div class="title">ビックカメラ</div>
+<div class="menu">
+  <div class="container">
+    <ul class="menu">
+      <li><a href="#" class="active" data-id="change">形式変換</a></li>
+      <li><a href="#" data-id="wordin">文字挿入</a></li>
+    </ul>
+    
+    <section class="content active" id="change">
+      <div class="box1">
+        <lavel for="save format"><div class="save">保存形式</div></lavel>
+        <div class="option">
+          <select id="save format">
+            <option>PDF</option>
+            <option>JPG</option>
+            <option>PNG</option>
+            <option>word</option>
+          </select>
+        </div>
+      </div>
+      <div class="box2">
+        <div class="filechange">複数→単一</div>
+        <div class="button1"><button>ファイル選択</button></div>
+        <div class="button2"><button>実行</button></div>
+      
+      </section>
+      <section class="content" id="wordin">
+      <div class="image"><button>画像選択</button></div>
+      <form method="POST">
+        <div class="writingform">
+          <label for="name">記入欄</label>
+            <textarea type="text" id="name"></textarea>
+        </div>
+      </form>
+    </section>
+  <script src="js/main.js"></script>
+</div>
 </body>
 </html>
