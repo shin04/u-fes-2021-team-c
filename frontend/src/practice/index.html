@@ -19,6 +19,8 @@
     <section class="content active" id="change">
       <div class="box1">
         <lavel for="save format"><div class="save">保存形式</div></lavel>
+        <div class="file"><button>ファイル選択</button></div>
+
         <div class="option">
           <select id="save format">
             <option>PDF</option>
@@ -27,21 +29,51 @@
             <option>word</option>
           </select>
         </div>
+        <input type="button" value="実行" style="font-size: 30px; margin-top: 10px; float: left; margin-left: 40px;">
       </div>
       <div class="box2">
         <div class="filechange">複数→単一</div>
-        <div class="button1"><button>ファイル選択</button></div>
-        <div class="button2"><button>実行</button></div>
-      
+        <input type="button" value="ファイル選択" style="float: left; font-size: 30px;">
+        <input type="button" value="実行" style="font-size: 30px; margin-left: 20px;">
+        <div class="hyou">
+          <table border="1" width="400px">
+            <tr>
+              <th width="17%">file.1</th>
+              <th width="83%"></th>
+            </tr>
+            <tr>
+              <th>file.2</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>file.3</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>file.4</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>file.5</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>file.6</th>
+              <th></th>
+            </tr>
+          </table>
+        </div>
+      </div>
       </section>
       <section class="content" id="wordin">
       <div class="image"><button>画像選択</button></div>
       <form method="POST">
         <div class="writingform">
-          <label for="name">記入欄</label>
-            <textarea type="text" id="name"></textarea>
+          <label for="name"></label>
+            <textarea type="text" id="name" placeholder="表示させたいテキストを記述"></textarea>
         </div>
       </form>
+      <input type="button" value="貼り付け" style="font-size: 50px; margin-left: 160px; margin-top: 30px;">
     </section>
   <script src="js/main.js"></script>
 </div>

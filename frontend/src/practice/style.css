@@ -5,7 +5,6 @@ body {
 .container {
   margin: auto;
   width: 1000px;
-  height: 700px;
 }
 
 .menu {
@@ -13,7 +12,6 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
-
 }
 
 .menu li a {
@@ -23,7 +21,7 @@ body {
   padding: 8px 0;
   color: #333;
   text-decoration: none;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .menu li a.active {
@@ -42,65 +40,72 @@ body {
   min-height: 150px;
   padding: 12px;
   display: block;
+  height: 400px;
+  border-radius: 0 8px 8px 8px;
 }
 
 .content {
   display: none;
 }
 .title {
-  font-size: 80px;
+  font-size: 50px;
 }
 
 .save {
   font-size: 50px;
 }
 
+.file {
+  border: solid 3px #000;
+  padding: 10px 8px;
+  width: 300px;
+  height: 100px;
+  background: #999;
+}
+
 .option select {
   width: 200px;
-  font-size: 50px;
-  
+  font-size: 30px;
+  margin-top: 16px;
+  float: left;
+  margin-left: 2px;
 }
 
 .box1 {
-  padding-left: 15%;
+  padding-left: 10%;
+  padding-top: 20px;
+  float: left;
 }
 
 .filechange {
   font-size: 50px;
 }
 
-.button1 {
-  font-size: 20px;
-  
-}
-
-.button2 {
-  font-size: 20px;
-  
-}
-
 .box2 {
-  float: right;
-}
-
-.writingform {
-  padding-left: 50%;
-  padding-top: -50%;
+  float: left;
+  padding-top: 20px;
+  padding-left: 70px;
 }
 
 textarea {
-  float: right;
   resize: none;
   width: 300px;
-  height: 80px;
+  height: 150px;
+  margin-left: 110px;
+  margin-top: 70px;
 }
 
 .image {
-  float: right;
-  padding: ;
-  margin: ;
+  float: left;
+  padding: 150px;
+  margin-top: 30px;
+  margin-left: 85px;
   font-weight: bold;
   border: solid 3px #000;
-  height: 300px;
-  width: 300px;
+  height: auto;
+  width: auto;
+}
+
+.hyou {
+  padding-top: 20px;
 }
