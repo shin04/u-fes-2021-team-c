@@ -1,17 +1,18 @@
 body {
   font-size: 20px;
+  background: #b6c867;
 }
 
 .container {
   margin: auto;
-  width: 1000px;
+  width: 1200px;
 }
 
 .menu {
   list-style: none;
-  padding: 0;
   margin: 0;
   display: flex;
+  margin-top: 10px;
 }
 
 .menu li a {
@@ -19,14 +20,14 @@ body {
   width: 100px;
   text-align: center;
   padding: 8px 0;
-  color: #333;
+  color: #faf1e6;
   text-decoration: none;
   border-radius: 8px 8px 0 0;
 }
 
 .menu li a.active {
-  background: #333;
-  color: #fff;
+  background: #faf1e6;
+  color: #666;
 }
 
 .menu li a:not(.active):hover {
@@ -35,13 +36,13 @@ body {
 }
 
 .content.active {
-  background: #333;
-  color: #fff;
+  background: #faf1e6;
+  color: #666;
   min-height: 150px;
   padding: 12px;
   display: block;
   height: 400px;
-  border-radius: 0 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
 }
 
 .content {
@@ -49,18 +50,26 @@ body {
 }
 .title {
   font-size: 50px;
+  color: #faf1e6;
+  background-color: #01937c;
+  width: 350px;
+  height: 70px;
+  text-align: center;
+  border-radius: 30px;
 }
 
 .save {
   font-size: 50px;
+  color: #444;
 }
 
 .file {
-  border: solid 3px #000;
+  color: #444;
+  border: solid 3px #444;
   padding: 10px 8px;
   width: 300px;
   height: 100px;
-  background: #999;
+  background: #ccc;
 }
 
 .option select {
@@ -69,29 +78,31 @@ body {
   margin-top: 16px;
   float: left;
   margin-left: 2px;
+  color: #444;
 }
 
 .box1 {
-  padding-left: 10%;
+  padding-left: 15%;
   padding-top: 20px;
   float: left;
 }
 
 .filechange {
   font-size: 50px;
+  color: #444;
 }
 
 .box2 {
   float: left;
   padding-top: 20px;
-  padding-left: 70px;
+  padding-left: 150px;
 }
 
 textarea {
   resize: none;
   width: 300px;
   height: 150px;
-  margin-left: 110px;
+  margin-left: 160px;
   margin-top: 70px;
 }
 
@@ -99,13 +110,42 @@ textarea {
   float: left;
   padding: 150px;
   margin-top: 30px;
-  margin-left: 85px;
+  margin-left: 130px;
   font-weight: bold;
-  border: solid 3px #000;
+  border: solid 3px #444;
   height: auto;
   width: auto;
+  background-color: #ccc;
 }
 
 .hyou {
   padding-top: 20px;
+  color: #444;
+}
+
+.jikkou1 {
+  color: #444;
+  font-size: 30px;
+  margin-top: 10px;
+  float: left;
+  margin-left: 40px;
+}
+
+.filesentaku {
+  float: left;
+  font-size: 30px;
+  color: #444;
+}
+
+.jikkou2 {
+  font-size: 30px;
+  margin-left: 20px;
+  color: #444;
+}
+
+.harituke {
+  font-size: 50px;
+  margin-left: 207px;
+  margin-top: 30px;
+  color: #444;
 }

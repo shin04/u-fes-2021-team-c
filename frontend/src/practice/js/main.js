@@ -19,4 +19,12 @@
       document.getElementById(clickedItem.dataset.id).classList.add("active");
     });
   });
+
+  fetch("https://nufes-teamc.herokuapp.com/users")
+    .then((res)=>{
+      return( res.text() );
+    })
+    .then((json)=>{
+      // 処理
+    });
 }
