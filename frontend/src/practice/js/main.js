@@ -20,11 +20,15 @@
     });
   });
 
-  fetch("https://nufes-teamc.herokuapp.com/users")
-    .then((res)=>{
-      return( res.text() );
-    })
-    .then((json)=>{
-      // 処理
-    });
+  function callApi() {
+    fetch("https://nufes-teamc.herokuapp.com/users")
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (users) {
+        console.log(users);
+      });
+  }
+
+  callApi();
 }
