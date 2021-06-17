@@ -8,6 +8,7 @@ import (
 	"u-fes-2021-team-c/database"
 	"u-fes-2021-team-c/handler"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,6 +29,10 @@ func main() {
 	studentinfoRepo := database.NewStudentRepository(*sqlHandler)
 
 	r := gin.Default()
+
+	// cors
+	r.Use(cors.Default())
+
 	r.GET("/health", func(c *gin.Context) {
 		c.String(http.StatusOK, "ok")
 	})
