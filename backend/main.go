@@ -45,6 +45,9 @@ func main() {
 	studentinfoHandler := handler.NewStudentinfoHandler(studentinfoRepo)
 	r.GET("/student_infos", func(c *gin.Context) { studentinfoHandler.GetAllStudentInfo(c) })
 
+	formatHandler := handler.NewFormatHandler()
+	r.POST("/convert", func(c *gin.Context) {})
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
