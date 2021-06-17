@@ -22,3 +22,13 @@ func (repo *StudentInfoRepository) GetAllStudentInfo() ([]*model.StudentInfo, er
 	}
 	return studentinfos, nil
 }
+
+func (repo *StudentInfoRepository) GetStudentInfoByUserId(userId int) (*model.StudentInfo, error) {
+	student_info := &model.StudentInfo{}
+	result := repo.SqlHandler.Conn.Where("user_id = ?", userId).First(&student_info)
+	if err := result.Error; err != nil {
+		return nil, err
+	}
+
+	return student_info, nil
+}

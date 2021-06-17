@@ -3,6 +3,8 @@ package handler
 import (
 	"errors"
 	"log"
+	"net/http"
+	"strconv"
 
 	"u-fes-2021-team-c/repository"
 	"u-fes-2021-team-c/usecase"
@@ -35,4 +37,22 @@ func (handler *StudentInfoHandler) GetAllStudentInfo(c *gin.Context) {
 	}
 
 	c.JSON(200, studentinfos)
+}
+
+func (handler *StudentInfoHandler) GetStudentInfoByUserId(c *gin.Context) {
+	idStr := c.Query("id")
+	userId, err := strconv.Atoi(idStr)
+	if err != nil {
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+	studentInfo, err := handler.uc.GetStudentInfoByUserId(userId)
+	if err != nil {
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, studentInfo)
 }

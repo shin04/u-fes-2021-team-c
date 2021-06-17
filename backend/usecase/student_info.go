@@ -10,9 +10,17 @@ type StudentInfoUsecase struct {
 }
 
 func (uc *StudentInfoUsecase) GetAllStudentInfo() ([]*model.StudentInfo, error) {
-	studentinfos, err := uc.StudentInfoRepo.GetAllStudentInfo()
+	studentInfos, err := uc.StudentInfoRepo.GetAllStudentInfo()
 	if err != nil {
 		return nil, err
 	}
-	return studentinfos, nil
+	return studentInfos, nil
+}
+
+func (uc *StudentInfoUsecase) GetStudentInfoByUserId(userId int) (*model.StudentInfo, error) {
+	studentInfo, err := uc.StudentInfoRepo.GetStudentInfoByUserId(userId)
+	if err != nil {
+		return nil, err
+	}
+	return studentInfo, nil
 }

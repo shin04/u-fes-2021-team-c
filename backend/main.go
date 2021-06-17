@@ -44,6 +44,7 @@ func main() {
 
 	studentinfoHandler := handler.NewStudentinfoHandler(studentinfoRepo)
 	r.GET("/student_infos", func(c *gin.Context) { studentinfoHandler.GetAllStudentInfo(c) })
+	r.GET("/student_info", func(c *gin.Context) { studentinfoHandler.GetStudentInfoByUserId(c) })
 
 	port := os.Getenv("PORT")
 	if port == "" {
