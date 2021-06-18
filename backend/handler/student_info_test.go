@@ -95,3 +95,78 @@ func TestGetAllStudentInfo(t *testing.T) {
 		})
 	}
 }
+
+func TestGetStudentInfoByUserID(t *testing.T) {
+	tests := []struct {
+		name               string
+		fakeGetStudentInfo func(usesrId int) (*model.StudentInfo, error)
+		want               *model.StudentInfo
+		code               int
+		isError            bool
+		wantError          error
+	}{
+		{
+			name: "success",
+			fakeGetStudentInfo: func(userId int) (*model.StudentInfo, error) {
+				return &model.StudentInfo{
+					Id:            1,
+					UseId:         1,
+					Name:          "name",
+					StudentNumber: 11111111,
+				}, nil
+			},
+			want: &model.StudentInfo{
+				Id:            1,
+				UseId:         1,
+				Name:          "name",
+				StudentNumber: 11111111,
+			},
+			code:    200,
+			isError: false,
+		},
+		{
+			name: "failed get user by id",
+			fakeGetStudentInfo: func(userId int) (*model.StudentInfo, error) {
+				return nil, errors.New("get user error")
+			},
+			code:      500,
+			isError:   true,
+			wantError: errors.New("get user error"),
+		},
+	}
+
+	for _, tt := range tests {
+		repo := testutils.FakeStudentInfoRepository{
+			FakeGetStudentInfoByUSesrID: tt.fakeGetStudentInfo,
+		}
+
+		studentInfoHandler := NewStudentinfoHandler(&repo)
+
+		t.Run(tt.name, func(t *testing.T) {
+			response := httptest.NewRecorder()
+			c, _ := gin.CreateTestContext(response)
+			c.Request, _ = http.NewRequest(
+				http.MethodGet,
+				"/student_info",
+				nil,
+			)
+
+			params := c.Request.URL.Query()
+			params.Add("id", "1")
+			c.Request.URL.RawQuery = params.Encode()
+
+			studentInfoHandler.GetStudentInfoByUserId(c)
+
+			assert.Equal(t, tt.code, response.Code)
+			if !tt.isError {
+				var responseBody *model.StudentInfo
+				_ = json.Unmarshal(response.Body.Bytes(), &responseBody)
+				assert.Equal(t, tt.want, responseBody)
+			} else {
+				var responseBody map[string]interface{}
+				_ = json.Unmarshal(response.Body.Bytes(), &responseBody)
+				assert.Equal(t, tt.wantError.Error(), responseBody["err"])
+			}
+		})
+	}
+}
