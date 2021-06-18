@@ -13,6 +13,15 @@ func NewStudentRepository(sqlHandler SqlHandler) repository.StudentInfoRepositor
 	return &StudentInfoRepository{sqlHandler}
 }
 
+func (repo *StudentInfoRepository) CreateStudentInfo(stundentInfo *model.StudentInfo) (int, error) {
+	result := repo.SqlHandler.Conn.Create(&stundentInfo)
+	if err := result.Error; err != nil {
+		return -1, err
+	}
+
+	return stundentInfo.Id, nil
+}
+
 func (repo *StudentInfoRepository) GetAllStudentInfo() ([]*model.StudentInfo, error) {
 	studentinfos := []*model.StudentInfo{}
 
@@ -21,4 +30,14 @@ func (repo *StudentInfoRepository) GetAllStudentInfo() ([]*model.StudentInfo, er
 		return nil, err
 	}
 	return studentinfos, nil
+}
+
+func (repo *StudentInfoRepository) GetStudentInfoByUserId(userId int) (*model.StudentInfo, error) {
+	student_info := &model.StudentInfo{}
+	result := repo.SqlHandler.Conn.Where("user_id = ?", userId).First(&student_info)
+	if err := result.Error; err != nil {
+		return nil, err
+	}
+
+	return student_info, nil
 }
