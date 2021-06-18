@@ -49,7 +49,7 @@ func (handler *UserHandler) RegisterUser(c *gin.Context) {
 		return
 	}
 	if userId == -1 {
-		err = errors.New("regisster usesr failed")
+		err = errors.New("register usesr failed")
 		log.Print(err)
 		c.JSON(500, gin.H{"err": err.Error()})
 		return
