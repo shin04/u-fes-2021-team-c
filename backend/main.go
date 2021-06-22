@@ -47,6 +47,9 @@ func main() {
 	r.GET("/student_infos", func(c *gin.Context) { studentinfoHandler.GetAllStudentInfo(c) })
 	r.GET("/student_info", func(c *gin.Context) { studentinfoHandler.GetStudentInfoByUserId(c) })
 
+	formatHandler := handler.NewFormatHandler()
+	r.POST("/convert", func(c *gin.Context) { formatHandler.ConvertImageToPdf(c) })
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
