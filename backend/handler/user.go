@@ -20,6 +20,11 @@ type RegisteruserReq struct {
 	Password string
 }
 
+type LoginReq struct {
+	Name     string
+	Password string
+}
+
 func NewUserHandler(userRepo repository.UserRepository) *UserHandler {
 	uc := usecase.UserUsecase{UserRepo: userRepo}
 
@@ -91,4 +96,30 @@ func (handler *UserHandler) GetUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, user)
+}
+
+func (handler *UserHandler) Login(c *gin.Context) {
+	req := LoginReq{}
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+
+	if req.Name == "" || req.Password == "" {
+		err = errors.New("username or password field not null")
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+
+	user, err := handler.uc.Login(req.Name, req.Password)
+	if err != nil {
+		log.Print(err)
+		c.JSON(500, gin.H{"err": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"userId": user.Id})
 }

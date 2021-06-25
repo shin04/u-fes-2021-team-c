@@ -37,3 +37,11 @@ func (uc *UserUsecase) GetUserById(userId int) (*model.User, error) {
 	}
 	return user, nil
 }
+
+func (uc *UserUsecase) Login(name string, password string) (*model.User, error) {
+	user, err := uc.UserRepo.GetUserByNameAndPasssword(name, password)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
