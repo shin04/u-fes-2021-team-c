@@ -3,9 +3,10 @@ package testutils
 import "u-fes-2021-team-c/model"
 
 type FakeUserRepository struct {
-	FakeCreateUser  func(user *model.User) (int, error)
-	FakeGetAllUsers func() ([]*model.User, error)
-	FakeGetUserById func(userId int) (*model.User, error)
+	FakeCreateUser                func(user *model.User) (int, error)
+	FakeGetAllUsers               func() ([]*model.User, error)
+	FakeGetUserById               func(userId int) (*model.User, error)
+	FakeGetUserByNameAndPasssword func(name string, password string) (*model.User, error)
 }
 
 func (repo FakeUserRepository) CreateUser(user *model.User) (int, error) {
@@ -18,4 +19,8 @@ func (repo FakeUserRepository) GetAllUsers() ([]*model.User, error) {
 
 func (repo FakeUserRepository) GetUserById(userId int) (*model.User, error) {
 	return repo.FakeGetUserById(userId)
+}
+
+func (repo FakeUserRepository) GetUserByNameAndPasssword(name string, password string) (*model.User, error) {
+	return repo.FakeGetUserByNameAndPasssword(name, password)
 }

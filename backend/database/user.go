@@ -41,3 +41,13 @@ func (repo *UserRepository) GetUserById(userId int) (*model.User, error) {
 
 	return user, nil
 }
+
+func (repo *UserRepository) GetUserByNameAndPasssword(name string, password string) (*model.User, error) {
+	user := &model.User{}
+	result := repo.SqlHandler.Conn.Where("name = ? and password = ?", name, password).First(&user)
+	if err := result.Error; err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}

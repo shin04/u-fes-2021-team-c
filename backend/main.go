@@ -41,6 +41,7 @@ func main() {
 	r.POST("/user", func(c *gin.Context) { userHandler.RegisterUser(c) })
 	r.GET("/users", func(c *gin.Context) { userHandler.GetAllUsers(c) })
 	r.GET("/user", func(c *gin.Context) { userHandler.GetUser(c) })
+	r.POST("/login", func(c *gin.Context) { userHandler.Login(c) })
 
 	studentinfoHandler := handler.NewStudentinfoHandler(studentinfoRepo)
 	r.POST("/student_info", func(c *gin.Context) { studentinfoHandler.RegisterStudentInfo(c) })
