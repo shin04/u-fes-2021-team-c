@@ -20,13 +20,13 @@
     });
   });
 
-  // async function callApi() {
-  //   const res = await fetch("https://nufes-teamc.herokuapp.com/users");
-  //   const users = await res.json();
-  //   console.log(users);
-  // }
+  async function callApi() {
+    const res = await fetch("https://nufes-teamc.herokuapp.com/users");
+    const users = await res.json();
+    console.log(users);
+  }
 
-  // callApi();
+  callApi();
 
   // function callApi() {
   //   fetch("https://nufes-teamc.herokuapp.com/users")
@@ -52,11 +52,11 @@
 
   // callApi();
 
-  fetch("https://nufes-teamc.herokuapp.com/users")
-    .then((res)=>{
-      return( res.json() );
-    })
-    .then((json)=>{
-    console.log(json);
-    });
+  // fetch("https://nufes-teamc.herokuapp.com/users")
+  //   .then((res)=>{
+  //     return( res.json() );
+  //   })
+  //   .then((json)=>{
+  //   console.log(json);
+  //   });
 }

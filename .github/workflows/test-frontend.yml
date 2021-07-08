@@ -1,0 +1,33 @@
+name: frontend Ci
+
+on:
+  push:
+    paths:
+      - "frontend/**"
+  pull_request:
+    paths:
+      - "frontend/**"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Prettier
+        run: |
+          npm install -g prettier
+      - name: Run Prettier
+        run: prettier --write .
+        working-directory: ./frontend
+
+      - name: Commit format
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Format
