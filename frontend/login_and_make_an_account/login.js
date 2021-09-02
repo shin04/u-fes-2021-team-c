@@ -36,8 +36,8 @@ const btn = document.querySelector(".button");
 // btn.addEventListener("click", green_tea, false);
 
 const login = () => {
-  // username = document.login_form.name.value;
-  // password = document.login_form.password.value;
+  const username = document.login_form.name.value;
+  const password = document.login_form.password.value;
 
   const data = {
     name: username,
