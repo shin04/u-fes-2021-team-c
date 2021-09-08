@@ -1,7 +1,7 @@
 const login = () => {
-    window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/login.html';
+    window.location.href = './login.html';
 };
 
 const mkac = () => {
-    window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/mkac.html';
+    window.location.href = './mkac.html';
 };

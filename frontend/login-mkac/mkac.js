@@ -23,7 +23,7 @@ const mkac = () => {
   .then((json) => {
     console.log(json);
     console.log('アカウント作成に成功しました．')
-    window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/home.html';
+    window.location.href = './home.html';
 
   });
   .catch((error)=>{

@@ -23,7 +23,7 @@ const login = () => {
     })
     .then((json) => {
       console.log(json);
-      window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/mkpdf.html';
+      window.location.href = './mkpdf.html';
 
     })
     .catch((error)=>{
