@@ -27,6 +27,6 @@ const mkac = () => {
 
   })
   .catch((error)=>{
-    console.error('エラー');
+    alert('エラー');
   });
 };
