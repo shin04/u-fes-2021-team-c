@@ -12,7 +12,6 @@ const login = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-    credentials = 'same-origin'
   };
   fetch("https://nufes-teamc.herokuapp.com/login", param)
     .then((res) => {
