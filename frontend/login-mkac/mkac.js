@@ -25,8 +25,8 @@ const mkac = () => {
     console.log('アカウント作成に成功しました．')
     window.location.href = './home.html';
 
-  });
+  })
   .catch((error)=>{
     console.error('エラー');
-  }）;
+  });
 };
