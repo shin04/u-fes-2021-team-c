@@ -12,12 +12,21 @@ const login = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+    credentials = 'same-origin'
   };
   fetch("https://nufes-teamc.herokuapp.com/login", param)
     .then((res) => {
-      return res.json();
+      if( ! res.ok ) {
+        throw new Error(`Fetch: ${res.status} ${res.statusText}`);
+      }
+      return( res.json() );
     })
     .then((json) => {
       console.log(json);
+      window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/mkpdf.html';
+
+    })
+    .catch((error)=>{
+      console.error('エラー');
     });
 };

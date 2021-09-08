@@ -15,9 +15,18 @@ const mkac = () => {
   };
   fetch('https://nufes-teamc.herokuapp.com/user', param)
   .then((res) => {
-    return res.json();
+    if( ! res.ok ) {
+      throw new Error(`Fetch: ${res.status} ${res.statusText}`);
+    }
+    return( res.json() );
   })
   .then((json) => {
     console.log(json);
+    console.log('アカウント作成に成功しました．')
+    window.location.href = '/Users/mattsunkun/web4/frontend/login-mkac/home.html';
+
   });
+  .catch((error)=>{
+    console.error('エラー');
+  }）;
 };
