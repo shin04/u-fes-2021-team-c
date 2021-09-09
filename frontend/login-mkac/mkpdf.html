@@ -7,10 +7,11 @@
         <h1>PDFを作ろう</h1>
         <hr>
         <form name='mkpdf_form'>
-            <input type='text' name='name' value='' >
-            <input type="file" name="img" accept="image/* " required multiple>
-            <button type='button' onClick='mkpdf();'>作成</button>'
+            お名前：<input type='text' name='name' value='' ><br>
+            学籍番号：<input type='text' name='number' value='' ><br>
+            画像を選択：<input type="file" name="img" accept="image/* " required multiple><br>
+            <button type='button' onClick='mkpdf();'>pdfを作成</button>
         </form>
-        <script type='text/javascript' src='mkac.js'></script>
+        <script type='text/javascript' src='mkpdf.js'></script>
     </body>
 </html>
