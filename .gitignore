@@ -1,8 +1,7 @@
 .DS_Store
 
-# local env files
-.env.local
-.env.*.local
+# env files
+.env*
 
 # Log files
 npm-debug.log*
@@ -21,3 +20,5 @@ pnpm-debug.log*
 
 node_modules
 package-lock.json
+
+jack-fes-2021-326805-3d82e35a4972.json
