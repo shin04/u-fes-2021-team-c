@@ -12,6 +12,11 @@ type FormatHandler struct {
 	uc usecase.FormatUsecase
 }
 
+type ConvertImageReq struct {
+	Image       string
+	ConvertType string
+}
+
 func NewFormatHandler() *FormatHandler {
 	uc := usecase.FormatUsecase{}
 
@@ -19,14 +24,17 @@ func NewFormatHandler() *FormatHandler {
 }
 
 func (handler *FormatHandler) ConvertImageToPdf(c *gin.Context) {
-	// file, header, err := c.Request.FormFile("image")
-	_, header, err := c.Request.FormFile("image")
+	req := ConvertImageReq{}
+	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		log.Print(err)
 		c.JSON(500, gin.H{"err": err.Error()})
 		return
 	}
-	filename := header.Filename
 
-	c.JSON(http.StatusOK, gin.H{"filename": filename})
+	// requestのvalidation
+
+	// usecaseで処理
+
+	c.JSON(http.StatusOK, gin.H{"message": "success"})
 }
